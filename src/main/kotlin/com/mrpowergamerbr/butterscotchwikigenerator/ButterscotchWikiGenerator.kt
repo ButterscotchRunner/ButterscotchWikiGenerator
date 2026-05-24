@@ -133,7 +133,7 @@ suspend fun main(args: Array<String>) {
             appendLine("| - | - |")
 
             for (yoyo in registeredYoYoFunctions) {
-                if (!registeredButterscotchFunctions.contains(yoyo)) {
+                if (!registeredButterscotchBuiltInVariables.contains(yoyo)) {
                     appendLine("| `${yoyo}` | \uD83D\uDEAB |")
                 } else {
                     appendLine("| `${yoyo}` | ✅ |")
