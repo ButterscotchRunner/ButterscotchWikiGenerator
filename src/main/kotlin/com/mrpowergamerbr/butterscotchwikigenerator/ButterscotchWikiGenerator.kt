@@ -156,16 +156,16 @@ suspend fun main(args: Array<String>) {
     // For old bytecode versions we pull it from a file, because YoYo doesn't offer downloads for them anymore (aside from bytecode version 16)
     val anon = object {}
     File("Butterscotch.wiki/Implemented Functions.md").writeText(generateFunctionsTable(gameMakerRunnerVersion, registeredYoYoFunctions))
-    File("Butterscotch.wiki/Implemented Functions (Bytecode Version 13).md").writeText(generateFunctionsTable("Bytecode Version 13", anon::class.java.getResourceAsStream("bc13_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Functions (Bytecode Version 14).md").writeText(generateFunctionsTable("Bytecode Version 14", anon::class.java.getResourceAsStream("bc14_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Functions (Bytecode Version 15).md").writeText(generateFunctionsTable("Bytecode Version 15", anon::class.java.getResourceAsStream("bc15_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Functions (Bytecode Version 16).md").writeText(generateFunctionsTable("Bytecode Version 16", anon::class.java.getResourceAsStream("bc16_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Functions (Bytecode Version 13).md").writeText(generateFunctionsTable("Bytecode Version 13", anon::class.java.getResourceAsStream("/bc13_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Functions (Bytecode Version 14).md").writeText(generateFunctionsTable("Bytecode Version 14", anon::class.java.getResourceAsStream("/bc14_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Functions (Bytecode Version 15).md").writeText(generateFunctionsTable("Bytecode Version 15", anon::class.java.getResourceAsStream("/bc15_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Functions (Bytecode Version 16).md").writeText(generateFunctionsTable("Bytecode Version 16", anon::class.java.getResourceAsStream("/bc16_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
 
     File("Butterscotch.wiki/Implemented Built-In Variables.md").writeText(generateBuiltInsTable(gameMakerRunnerVersion, registeredYoYoBuiltInVariables))
-    File("Butterscotch.wiki/Implemented Built-In Variables (Bytecode Version 13).md").writeText(generateBuiltInsTable(gameMakerRunnerVersion, anon::class.java.getResourceAsStream("bc13_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Built-In Variables (Bytecode Version 14).md").writeText(generateBuiltInsTable(gameMakerRunnerVersion, anon::class.java.getResourceAsStream("bc14_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Built-In Variables (Bytecode Version 15).md").writeText(generateBuiltInsTable(gameMakerRunnerVersion, anon::class.java.getResourceAsStream("bc15_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Built-In Variables (Bytecode Version 16).md").writeText(generateBuiltInsTable(gameMakerRunnerVersion, anon::class.java.getResourceAsStream("bc16_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Built-In Variables (Bytecode Version 13).md").writeText(generateBuiltInsTable(gameMakerRunnerVersion, anon::class.java.getResourceAsStream("/bc13_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Built-In Variables (Bytecode Version 14).md").writeText(generateBuiltInsTable(gameMakerRunnerVersion, anon::class.java.getResourceAsStream("/bc14_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Built-In Variables (Bytecode Version 15).md").writeText(generateBuiltInsTable(gameMakerRunnerVersion, anon::class.java.getResourceAsStream("/bc15_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Built-In Variables (Bytecode Version 16).md").writeText(generateBuiltInsTable(gameMakerRunnerVersion, anon::class.java.getResourceAsStream("/bc16_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
 }
 
 fun decompileWithGhidra(soFile: File, outC: File) {
