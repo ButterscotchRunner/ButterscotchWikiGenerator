@@ -205,9 +205,9 @@ suspend fun main(args: Array<String>) {
     val functionLifespans = lifespans("builtin_functions", registeredYoYoFunctions)
     val builtInLifespans = lifespans("builtin_variables", registeredYoYoBuiltInVariables)
 
-    File("Butterscotch.wiki/builtin_functions.md")
+    File("Butterscotch.wiki/builtin-functions.md")
         .writeText(generateMergedTable("GML Function", functionLifespans, registeredButterscotchFunctions))
-    File("Butterscotch.wiki/builtin_variables.md")
+    File("Butterscotch.wiki/builtin-variables.md")
         .writeText(generateMergedTable("GML Variable", builtInLifespans, registeredButterscotchBuiltInVariables))
 
     val ideToWadVersions = linkedMapOf(
@@ -287,7 +287,7 @@ suspend fun main(args: Array<String>) {
         for ((ide, wad) in ideToWadVersions) appendLine("| $ide | $wad |")
     }
 
-    File("Butterscotch.wiki/ide_versions.md").writeText(generateIdeToWadVersionsTable())
+    File("Butterscotch.wiki/ide-versions.md").writeText(generateIdeToWadVersionsTable())
 }
 
 fun decompileWithGhidra(soFile: File, outC: File) {
