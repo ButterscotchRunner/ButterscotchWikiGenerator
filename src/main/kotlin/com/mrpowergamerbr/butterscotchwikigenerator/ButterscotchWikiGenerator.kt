@@ -110,27 +110,42 @@ suspend fun main(args: Array<String>) {
         "GameMaker $gameMakerRunnerVersion" to null,
     )
 
-    fun firstSeen(suffix: String, liveList: List<String>): LinkedHashMap<String, String> {
-        val out = LinkedHashMap<String, String>()
+    data class Lifespan(val addedIn: String, val removedIn: String?)
+
+    fun lifespans(suffix: String, liveList: List<String>): LinkedHashMap<String, Lifespan> {
+        val first = LinkedHashMap<String, String>()
+        val last = LinkedHashMap<String, String>()
         for ((label, prefix) in versionTimeline) {
             val list = if (prefix == null) liveList else loadResource("${prefix}_$suffix.txt")
-            for (name in list) if (name !in out) out[name] = label
+            for (name in list) {
+                if (name !in first) first[name] = label
+                last[name] = label
+            }
+        }
+        val labels = versionTimeline.map { it.first }
+        val liveLabel = labels.last()
+        val out = LinkedHashMap<String, Lifespan>()
+        for ((name, addedIn) in first) {
+            val lastLabel = last[name]!!
+            val removedIn = if (lastLabel == liveLabel) null else labels[labels.indexOf(lastLabel) + 1]
+            out[name] = Lifespan(addedIn, removedIn)
         }
         return out
     }
 
-    fun generateMergedTable(header: String, firstSeenMap: Map<String, String>, implemented: List<String>): String {
+    fun generateMergedTable(header: String, lifespans: Map<String, Lifespan>, implemented: List<String>): String {
         val labelOrder = versionTimeline.map { it.first }
-        val sorted = firstSeenMap.entries.sortedWith(compareBy({ labelOrder.indexOf(it.value) }, { it.key }))
+        val sorted = lifespans.entries.sortedWith(compareBy({ labelOrder.indexOf(it.value.addedIn) }, { it.key }))
         val total = sorted.size
         val done = sorted.count { it.key in implemented }
 
         val table = buildString {
-            appendLine("| $header | Implemented? | Added In |")
-            appendLine("| - | - | - |")
-            for ((name, version) in sorted) {
+            appendLine("| $header | Implemented? | Added In | Removed In |")
+            appendLine("| - | - | - | - |")
+            for ((name, lifespan) in sorted) {
                 val mark = if (name in implemented) "✅" else "🚫"
-                appendLine("| `$name` | $mark | $version |")
+                val removed = lifespan.removedIn ?: ""
+                appendLine("| `$name` | $mark | ${lifespan.addedIn} | $removed |")
             }
         }
 
@@ -141,13 +156,13 @@ suspend fun main(args: Array<String>) {
         }
     }
 
-    val firstSeenFunctions = firstSeen("functions", registeredYoYoFunctions)
-    val firstSeenBuiltIns = firstSeen("builtin_variables", registeredYoYoBuiltInVariables)
+    val functionLifespans = lifespans("functions", registeredYoYoFunctions)
+    val builtInLifespans = lifespans("builtin_variables", registeredYoYoBuiltInVariables)
 
     File("Butterscotch.wiki/Implemented Functions.md")
-        .writeText(generateMergedTable("GML Function", firstSeenFunctions, registeredButterscotchFunctions))
+        .writeText(generateMergedTable("GML Function", functionLifespans, registeredButterscotchFunctions))
     File("Butterscotch.wiki/Implemented Built-In Variables.md")
-        .writeText(generateMergedTable("GML Built-In Variable", firstSeenBuiltIns, registeredButterscotchBuiltInVariables))
+        .writeText(generateMergedTable("GML Built-In Variable", builtInLifespans, registeredButterscotchBuiltInVariables))
 }
 
 fun decompileWithGhidra(soFile: File, outC: File) {
