@@ -99,11 +99,11 @@ suspend fun main(args: Array<String>) {
     fun loadResource(name: String): List<String> = anon::class.java.getResourceAsStream("/$name")!!.readAllBytes().toString(Charsets.UTF_8).lines().filter { it.isNotBlank() }
 
     val versionTimeline: List<Pair<String, String?>> = listOf(
-        "GameMaker: Studio 1.0.198" to "gms_1_0_198",
-        "GameMaker: Studio 1.1.690" to "gms_1_1_690",
-        "GameMaker: Studio 1.1.827" to "gms_1_1_827",
-        "GameMaker: Studio 1.1.867" to "gms_1_1_867",
-        "WAD Version 13" to "wad13",
+        "GM:S 1.0.198" to "gms_1_0_198",
+        "GM:S 1.1.690" to "gms_1_1_690",
+        "GM:S 1.1.827" to "gms_1_1_827",
+        "GM:S 1.1.867" to "gms_1_1_867",
+        "GM:S 1.1.1130" to "gms_1_1_1130",
         "WAD Version 14" to "wad14",
         "WAD Version 15" to "wad15",
         "WAD Version 16" to "wad16",
