@@ -107,7 +107,7 @@ suspend fun main(args: Array<String>) {
         "WAD Version 14" to "wad14",
         "WAD Version 15" to "wad15",
         "WAD Version 16" to "wad16",
-        "GameMaker $gameMakerRunnerVersion" to null,
+        "GM ${gameMakerRunnerVersion.removePrefix("Version ").trim()}" to null,
     )
 
     data class Lifespan(val addedIn: String, val removedIn: String?)
@@ -175,7 +175,7 @@ fun decompileWithGhidra(soFile: File, outC: File) {
     }
     val scriptDir = File(workDir, "scripts").apply { mkdirs() }
     val projectDir = File(workDir, "project").apply { mkdirs() }
-    
+
     File(scriptDir, "ExportToC.java").writeText(
         """
         import ghidra.app.script.GhidraScript;
