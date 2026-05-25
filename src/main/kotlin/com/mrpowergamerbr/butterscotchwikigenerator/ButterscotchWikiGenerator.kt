@@ -175,41 +175,21 @@ fun decompileWithGhidra(soFile: File, outC: File) {
     }
     val scriptDir = File(workDir, "scripts").apply { mkdirs() }
     val projectDir = File(workDir, "project").apply { mkdirs() }
-
+    
     File(scriptDir, "ExportToC.java").writeText(
         """
         import ghidra.app.script.GhidraScript;
-        import ghidra.app.decompiler.DecompInterface;
-        import ghidra.app.decompiler.DecompileResults;
-        import ghidra.program.model.listing.Function;
-        import java.io.PrintWriter;
+        import ghidra.app.util.exporter.CppExporter;
+        import java.io.File;
 
         public class ExportToC extends GhidraScript {
             @Override
             public void run() throws Exception {
                 String outPath = System.getenv("EXPORT_C_OUT");
-                DecompInterface ifc = new DecompInterface();
-                ifc.openProgram(currentProgram);
-                int count = 0, failed = 0;
-                try (PrintWriter w = new PrintWriter(outPath)) {
-                    for (Function f : currentProgram.getFunctionManager().getFunctions(true)) {
-                        if (monitor.isCancelled()) break;
-                        try {
-                            DecompileResults r = ifc.decompileFunction(f, 60, monitor);
-                            if (r != null && r.getDecompiledFunction() != null) {
-                                w.println("// " + f.getName() + " @ " + f.getEntryPoint());
-                                w.println(r.getDecompiledFunction().getC());
-                                count++;
-                            } else {
-                                failed++;
-                            }
-                        } catch (Exception e) {
-                            failed++;
-                        }
-                        if (count > 0 && count % 100 == 0) println("Decompiled " + count + " functions...");
-                    }
-                }
-                println("Done. Decompiled " + count + " functions (" + failed + " failed). Output: " + outPath);
+                CppExporter exporter = new CppExporter();
+                boolean ok = exporter.export(new File(outPath), currentProgram, null, monitor);
+                if (!ok) println("CppExporter.export returned false");
+                println("Done. Output: " + outPath);
             }
         }
         """.trimIndent()
