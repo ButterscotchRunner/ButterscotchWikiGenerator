@@ -186,6 +186,45 @@ suspend fun main(args: Array<String>) {
         .writeText(generateMergedTable("GML Function", functionLifespans, registeredButterscotchFunctions))
     File("Butterscotch.wiki/Implemented Built-In Variables.md")
         .writeText(generateMergedTable("GML Built-In Variable", builtInLifespans, registeredButterscotchBuiltInVariables))
+
+    val ideToWadVersions = linkedMapOf(
+        "GM:S 1.0.98" to 6,
+        "GM:S 1.0.114" to 6,
+        "GM:S 1.0.129" to 7,
+        "GM:S 1.0.198" to 8,
+        "GM:S 1.1.622" to 10,
+        "GM:S 1.1.690" to 10,
+        "GM:S 1.1.694" to 10,
+        "GM:S 1.1.711" to 10,
+        "GM:S 1.1.734" to 10,
+        "GM:S 1.1.750" to 10,
+        "GM:S 1.1.754" to 11,
+        "GM:S 1.1.785" to 11,
+        "GM:S 1.1.805" to 11,
+        "GM:S 1.1.827" to 11,
+        "GM:S 1.1.844" to 11,
+        "GM:S 1.1.867" to 12,
+        "GM:S 1.1.872" to 12,
+        "GM:S 1.1.913" to 13,
+        "GM:S 1.1.917" to 13,
+        "GM:S 1.1.929" to 13,
+        "GM:S 1.1.964" to 13,
+        "GM:S 1.1.1013" to 13,
+        "GM:S 1.1.1044" to 13,
+        "GM:S 1.1.1058" to 13,
+        "GM:S 1.1.1076" to 13,
+        "GM:S 1.1.1086" to 13,
+        "GM:S 1.1.1089" to 13,
+        "GM:S 1.1.1130" to 13,
+    )
+
+    fun generateIdeToWadVersionsTable(): String = buildString {
+        appendLine("| IDE Version | WAD Version |")
+        appendLine("| - | - |")
+        for ((ide, wad) in ideToWadVersions) appendLine("| $ide | $wad |")
+    }
+
+    File("Butterscotch.wiki/IDE to WAD Versions.md").writeText(generateIdeToWadVersionsTable())
 }
 
 fun decompileWithGhidra(soFile: File, outC: File) {
