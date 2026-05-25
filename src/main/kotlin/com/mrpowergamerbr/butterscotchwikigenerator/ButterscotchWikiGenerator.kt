@@ -96,7 +96,9 @@ suspend fun main(args: Array<String>) {
         .toList()
 
     val anon = object {}
-    fun loadResource(name: String): List<String> = anon::class.java.getResourceAsStream("/$name")!!.readAllBytes().toString(Charsets.UTF_8).lines().filter { it.isNotBlank() }
+    fun loadResource(name: String): List<String> {
+        return (anon::class.java.getResourceAsStream("/$name") ?: error("Missing file $name!")).readAllBytes().toString(Charsets.UTF_8).lines().filter { it.isNotBlank() }
+    }
 
     val versionTimeline: List<Pair<String, String?>> = listOf(
         "GM:S 1.0.98" to "gms_1_0_98",
