@@ -254,8 +254,8 @@ suspend fun main(args: Array<String>) {
         "GM:S 1.4.1749" to 15,
         "GM:S 1.4.1767" to 16,
         "GM:S 1.4.1773" to 16,
-        "GM:S 1.4.9999" to 16,
         "GM:S 1.4.1804" to 16,
+        "GM:S 1.4.9999" to 16,
     )
 
     fun generateIdeToWadVersionsTable(): String = buildString {
