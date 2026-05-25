@@ -184,7 +184,7 @@ suspend fun main(args: Array<String>) {
         val done = sorted.count { it.key in implemented }
 
         val table = buildString {
-            appendLine("| $header | Implemented? | Added In | Removed In |")
+            appendLine("| $header | Implemented in Butterscotch? | Added In | Removed In |")
             appendLine("| - | - | - | - |")
             for ((name, lifespan) in sorted) {
                 val mark = if (name in implemented) "✅" else "🚫"
@@ -200,13 +200,13 @@ suspend fun main(args: Array<String>) {
         }
     }
 
-    val functionLifespans = lifespans("functions", registeredYoYoFunctions)
+    val functionLifespans = lifespans("builtin_functions", registeredYoYoFunctions)
     val builtInLifespans = lifespans("builtin_variables", registeredYoYoBuiltInVariables)
 
-    File("Butterscotch.wiki/Implemented Functions.md")
+    File("Butterscotch.wiki/builtin_functions.md")
         .writeText(generateMergedTable("GML Function", functionLifespans, registeredButterscotchFunctions))
-    File("Butterscotch.wiki/Implemented Built-In Variables.md")
-        .writeText(generateMergedTable("GML Built-In Variable", builtInLifespans, registeredButterscotchBuiltInVariables))
+    File("Butterscotch.wiki/builtin_variables.md")
+        .writeText(generateMergedTable("GML Variable", builtInLifespans, registeredButterscotchBuiltInVariables))
 
     val ideToWadVersions = linkedMapOf(
         "GM:S 1.0.98" to 6,
@@ -285,7 +285,7 @@ suspend fun main(args: Array<String>) {
         for ((ide, wad) in ideToWadVersions) appendLine("| $ide | $wad |")
     }
 
-    File("Butterscotch.wiki/IDE to WAD Versions.md").writeText(generateIdeToWadVersionsTable())
+    File("Butterscotch.wiki/ide_versions.md").writeText(generateIdeToWadVersionsTable())
 }
 
 fun decompileWithGhidra(soFile: File, outC: File) {
