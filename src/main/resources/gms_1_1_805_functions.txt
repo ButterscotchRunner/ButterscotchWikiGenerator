@@ -460,6 +460,7 @@ window_view_mouse_get_y
 window_view_mouse_set
 window_views_mouse_get_x
 window_views_mouse_get_y
+window_views_mouse_set
 screen_save
 screen_save_part
 draw_getpixel
@@ -480,10 +481,6 @@ merge_color
 draw_set_blend_mode
 draw_set_blend_mode_ext
 draw_set_color_write_enable
-draw_set_alpha_test
-draw_set_alpha_test_ref_value
-draw_get_alpha_test
-draw_get_alpha_test_ref_value
 draw_clear
 draw_clear_alpha
 draw_point
@@ -977,8 +974,6 @@ room_instance_clear
 room_tile_add
 room_tile_add_ext
 room_tile_clear
-asset_get_index
-asset_get_type
 sound_play
 sound_loop
 sound_stop
@@ -1573,18 +1568,12 @@ win8_search_enable
 win8_search_disable
 win8_search_add_suggestions
 win8_device_touchscreen_available
-win8_license_initialize_sandbox
-win8_license_trial_version
 winphone_tile_title
 winphone_tile_count
 winphone_tile_back_title
 winphone_tile_back_content
-winphone_tile_back_content_wide
 winphone_tile_front_image
-winphone_tile_front_image_small
-winphone_tile_front_image_wide
 winphone_tile_back_image
-winphone_tile_back_image_wide
 winphone_tile_background_color
 winphone_tile_icon_image
 winphone_tile_small_icon_image
@@ -1596,5 +1585,3 @@ gravemakerSave
 gravemakerLoad
 gravemakerIsLoggedIn
 gravemakerIsLoaded
-immersion_play_effect
-immersion_stop

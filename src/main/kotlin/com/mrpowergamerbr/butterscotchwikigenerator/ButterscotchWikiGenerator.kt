@@ -99,10 +99,33 @@ suspend fun main(args: Array<String>) {
     fun loadResource(name: String): List<String> = anon::class.java.getResourceAsStream("/$name")!!.readAllBytes().toString(Charsets.UTF_8).lines().filter { it.isNotBlank() }
 
     val versionTimeline: List<Pair<String, String?>> = listOf(
+        "GM:S 1.0.98" to "gms_1_0_98",
+        "GM:S 1.0.114" to "gms_1_0_114",
+        "GM:S 1.0.129" to "gms_1_0_129",
         "GM:S 1.0.198" to "gms_1_0_198",
+        "GM:S 1.1.622" to "gms_1_1_622",
         "GM:S 1.1.690" to "gms_1_1_690",
+        "GM:S 1.1.694" to "gms_1_1_694",
+        "GM:S 1.1.711" to "gms_1_1_711",
+        "GM:S 1.1.734" to "gms_1_1_734",
+        "GM:S 1.1.750" to "gms_1_1_750",
+        "GM:S 1.1.754" to "gms_1_1_754",
+        "GM:S 1.1.785" to "gms_1_1_785",
+        "GM:S 1.1.805" to "gms_1_1_805",
         "GM:S 1.1.827" to "gms_1_1_827",
+        "GM:S 1.1.844" to "gms_1_1_844",
         "GM:S 1.1.867" to "gms_1_1_867",
+        "GM:S 1.1.872" to "gms_1_1_872",
+        "GM:S 1.1.913" to "gms_1_1_913",
+        "GM:S 1.1.917" to "gms_1_1_917",
+        "GM:S 1.1.929" to "gms_1_1_929",
+        "GM:S 1.1.964" to "gms_1_1_964",
+        "GM:S 1.1.1013" to "gms_1_1_1013",
+        "GM:S 1.1.1044" to "gms_1_1_1044",
+        "GM:S 1.1.1058" to "gms_1_1_1058",
+        "GM:S 1.1.1076" to "gms_1_1_1076",
+        "GM:S 1.1.1086" to "gms_1_1_1086",
+        "GM:S 1.1.1089" to "gms_1_1_1089",
         "GM:S 1.1.1130" to "gms_1_1_1130",
         "WAD Version 14" to "wad14",
         "WAD Version 15" to "wad15",
@@ -170,7 +193,9 @@ fun decompileWithGhidra(soFile: File, outC: File) {
     val analyzeHeadless = File(ghidraHome, "support/analyzeHeadless")
     require(analyzeHeadless.canExecute()) { "analyzeHeadless not found/executable at $analyzeHeadless" }
 
-    val workDir = File(System.getProperty("java.io.tmpdir"), "butterscotch-ghidra").apply {
+    // Use a per-invocation workdir so concurrent decompiles don't stomp each other's Ghidra
+    // project / script directories.
+    val workDir = File(System.getProperty("java.io.tmpdir"), "ghidra-workdir-${UUID.randomUUID()}").apply {
         deleteRecursively(); mkdirs()
     }
     val scriptDir = File(workDir, "scripts").apply { mkdirs() }

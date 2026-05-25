@@ -836,12 +836,6 @@ sprite_add_from_surface
 sprite_replace
 sprite_add_alpha
 sprite_replace_alpha
-sprite_add
-sprite_create_from_screen
-sprite_add_from_screen
-sprite_create_from_surface
-sprite_add_from_surface
-sprite_replace
 sprite_add_sprite
 sprite_replace_sprite
 sprite_save_strip
@@ -867,12 +861,6 @@ background_create_gradient
 background_add
 background_add_alpha
 background_replace_alpha
-background_create_color
-background_replace
-background_create_from_screen
-background_create_from_surface
-background_create_gradient
-background_add
 background_add_background
 background_replace_background
 background_delete

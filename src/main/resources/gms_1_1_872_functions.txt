@@ -6,9 +6,9 @@ buffer_poke
 buffer_peek
 buffer_seek
 buffer_save
-buffer_save_ex
+buffer_save_ext
 buffer_load
-buffer_load_ex
+buffer_load_ext
 buffer_copy
 buffer_fill
 buffer_get_size
@@ -18,9 +18,10 @@ buffer_md5
 buffer_sha1
 buffer_base64_encode
 buffer_base64_decode
-buffer_base64_decode_ex
+buffer_base64_decode_ext
 buffer_sizeof
 buffer_get_surface
+buffer_set_surface
 ds_set_precision
 ds_stack_create
 ds_stack_destroy
@@ -425,6 +426,7 @@ display_reset
 display_mouse_get_x
 display_mouse_get_y
 display_mouse_set
+draw_enable_drawevent
 window_set_visible
 window_get_visible
 window_set_fullscreen
@@ -460,6 +462,7 @@ window_view_mouse_get_y
 window_view_mouse_set
 window_views_mouse_get_x
 window_views_mouse_get_y
+window_views_mouse_set
 screen_save
 screen_save_part
 draw_getpixel
@@ -1340,6 +1343,9 @@ d3d_model_cone
 d3d_model_ellipsoid
 d3d_model_wall
 d3d_model_floor
+YoYo_EnableAlphaBlend
+draw_enable_alphablend
+draw_texture_flush
 physics_world_create
 physics_world_gravity
 physics_world_update_speed
@@ -1394,6 +1400,7 @@ gamepad_button_check_released
 gamepad_button_value
 gamepad_axis_count
 gamepad_axis_value
+gamepad_set_vibration
 YoYo_AddVirtualKey
 YoYo_DeleteVirtualKey
 YoYo_ShowVirtualKey
@@ -1447,7 +1454,6 @@ clickable_change_ext
 clickable_delete
 shop_leave_rating
 YoYo_GetTimer
-YoYo_EnableAlphaBlend
 YoYo_GetPlatform
 YoYo_GetDevice
 YoYo_GetCPUDetails
@@ -1455,8 +1461,6 @@ YoYo_GetConfig
 YoYo_GetSessionKey
 YoYo_CheckSecurity
 get_timer
-draw_enable_alphablend
-draw_texture_flush
 os_get_config
 os_get_language
 display_get_dpi_x
@@ -1598,3 +1602,15 @@ gravemakerIsLoggedIn
 gravemakerIsLoaded
 immersion_play_effect
 immersion_stop
+network_create_socket
+network_create_server
+network_connect
+network_connect_raw
+network_send_packet
+network_send_raw
+network_send_broadcast
+network_send_udp
+network_resolve
+network_receive_packet
+network_destroy
+network_set_timeout

@@ -1,7 +1,6 @@
 os_type
 os_device
 os_version
-os_browser
 browser_width
 browser_height
 argument_relative
@@ -22,7 +21,6 @@ argument12
 argument13
 argument14
 argument15
-argument_count
 room
 room_first
 room_last
@@ -158,8 +156,6 @@ path_endaction
 timeline_index
 timeline_position
 timeline_speed
-timeline_running
-timeline_loop
 async_load
 phy_rotation
 phy_position_x
@@ -170,18 +166,15 @@ phy_linear_velocity_y
 phy_speed_x
 phy_speed_y
 phy_bullet
-phy_fixed_rotation
-phy_active
 phy_mass
 phy_inertia
 phy_com_x
 phy_com_y
 phy_dynamic
-phy_kinematic
+phy_frozen
 phy_sleeping
 phy_collision_points
 phy_collision_x
 phy_collision_y
 phy_col_normal_x
 phy_col_normal_y
-display_aa

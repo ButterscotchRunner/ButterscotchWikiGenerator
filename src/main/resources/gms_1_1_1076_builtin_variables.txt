@@ -23,6 +23,7 @@ argument13
 argument14
 argument15
 argument_count
+debug_mode
 room
 room_first
 room_last
@@ -32,6 +33,7 @@ score
 lives
 health
 game_id
+game_guid
 working_directory
 temp_directory
 program_directory
@@ -76,6 +78,7 @@ view_vborder
 view_hspeed
 view_vspeed
 view_object
+view_surface_id
 mouse_x
 mouse_y
 mouse_button
@@ -185,3 +188,5 @@ phy_collision_y
 phy_col_normal_x
 phy_col_normal_y
 display_aa
+delta_time
+webgl_enabled
