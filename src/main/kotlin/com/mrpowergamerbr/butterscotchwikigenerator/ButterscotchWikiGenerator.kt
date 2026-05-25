@@ -156,16 +156,24 @@ suspend fun main(args: Array<String>) {
     // For old bytecode versions we pull it from a file, because YoYo doesn't offer downloads for them anymore (aside from bytecode version 16)
     val anon = object {}
     File("Butterscotch.wiki/Implemented Functions.md").writeText(generateFunctionsTable(gameMakerRunnerVersion, registeredYoYoFunctions))
-    File("Butterscotch.wiki/Implemented Functions (Bytecode Version 13).md").writeText(generateFunctionsTable("Bytecode Version 13", anon::class.java.getResourceAsStream("/bc13_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Functions (Bytecode Version 14).md").writeText(generateFunctionsTable("Bytecode Version 14", anon::class.java.getResourceAsStream("/bc14_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Functions (Bytecode Version 15).md").writeText(generateFunctionsTable("Bytecode Version 15", anon::class.java.getResourceAsStream("/bc15_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Functions (Bytecode Version 16).md").writeText(generateFunctionsTable("Bytecode Version 16", anon::class.java.getResourceAsStream("/bc16_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Functions (WAD Version 8).md").writeText(generateFunctionsTable("WAD Version 8", anon::class.java.getResourceAsStream("/wad8_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Functions (WAD Version 10).md").writeText(generateFunctionsTable("WAD Version 10", anon::class.java.getResourceAsStream("/wad10_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Functions (WAD Version 11).md").writeText(generateFunctionsTable("WAD Version 11", anon::class.java.getResourceAsStream("/wad11_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Functions (WAD Version 12).md").writeText(generateFunctionsTable("WAD Version 12", anon::class.java.getResourceAsStream("/wad12_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Functions (WAD Version 13).md").writeText(generateFunctionsTable("WAD Version 13", anon::class.java.getResourceAsStream("/wad13_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Functions (WAD Version 14).md").writeText(generateFunctionsTable("WAD Version 14", anon::class.java.getResourceAsStream("/wad14_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Functions (WAD Version 15).md").writeText(generateFunctionsTable("WAD Version 15", anon::class.java.getResourceAsStream("/wad15_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Functions (WAD Version 16).md").writeText(generateFunctionsTable("WAD Version 16", anon::class.java.getResourceAsStream("/wad16_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
 
     File("Butterscotch.wiki/Implemented Built-In Variables.md").writeText(generateBuiltInsTable(gameMakerRunnerVersion, registeredYoYoBuiltInVariables))
-    File("Butterscotch.wiki/Implemented Built-In Variables (Bytecode Version 13).md").writeText(generateBuiltInsTable("Bytecode Version 13", anon::class.java.getResourceAsStream("/bc13_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Built-In Variables (Bytecode Version 14).md").writeText(generateBuiltInsTable("Bytecode Version 14", anon::class.java.getResourceAsStream("/bc14_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Built-In Variables (Bytecode Version 15).md").writeText(generateBuiltInsTable("Bytecode Version 15", anon::class.java.getResourceAsStream("/bc15_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Built-In Variables (Bytecode Version 16).md").writeText(generateBuiltInsTable("Bytecode Version 16", anon::class.java.getResourceAsStream("/bc16_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Built-In Variables (WAD Version 8).md").writeText(generateBuiltInsTable("WAD Version 8", anon::class.java.getResourceAsStream("/wad8_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Built-In Variables (WAD Version 10).md").writeText(generateBuiltInsTable("WAD Version 10", anon::class.java.getResourceAsStream("/wad10_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Built-In Variables (WAD Version 11).md").writeText(generateBuiltInsTable("WAD Version 11", anon::class.java.getResourceAsStream("/wad11_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Built-In Variables (WAD Version 12).md").writeText(generateBuiltInsTable("WAD Version 12", anon::class.java.getResourceAsStream("/wad12_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Built-In Variables (WAD Version 13).md").writeText(generateBuiltInsTable("WAD Version 13", anon::class.java.getResourceAsStream("/wad13_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Built-In Variables (WAD Version 14).md").writeText(generateBuiltInsTable("WAD Version 14", anon::class.java.getResourceAsStream("/wad14_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Built-In Variables (WAD Version 15).md").writeText(generateBuiltInsTable("WAD Version 15", anon::class.java.getResourceAsStream("/wad15_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    File("Butterscotch.wiki/Implemented Built-In Variables (WAD Version 16).md").writeText(generateBuiltInsTable("WAD Version 16", anon::class.java.getResourceAsStream("/wad16_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
 }
 
 fun decompileWithGhidra(soFile: File, outC: File) {
