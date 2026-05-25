@@ -95,101 +95,59 @@ suspend fun main(args: Array<String>) {
         }
         .toList()
 
-    // Cross check
-    fun generateFunctionsTable(gameMakerRunnerVersion: String, registeredYoYoFunctions: List<String>): String {
-        var total = 0
-        var implemented = 0
-
-        val table = buildString {
-            appendLine("| GML Function | Implemented? |")
-            appendLine("| - | - |")
-
-            for (yoyo in registeredYoYoFunctions) {
-                if (!registeredButterscotchFunctions.contains(yoyo)) {
-                    appendLine("| `${yoyo}` | \uD83D\uDEAB |")
-                } else {
-                    appendLine("| `${yoyo}` | ✅ |")
-                    implemented++
-                }
-                total++
-            }
-        }
-
-        return buildString {
-            appendLine("**Progress:** $implemented/$total (${(implemented / total.toDouble()) * 100}%)")
-            appendLine()
-            appendLine("Tested against $gameMakerRunnerVersion")
-            appendLine()
-            appendLine(table)
-        }
-    }
-
-    fun generateBuiltInsTable(gameMakerRunnerVersion: String, registeredYoYoFunctions: List<String>): String {
-        var total = 0
-        var implemented = 0
-
-        val table = buildString {
-            appendLine("| GML Built-In Variable | Implemented? |")
-            appendLine("| - | - |")
-
-            for (yoyo in registeredYoYoFunctions) {
-                if (!registeredButterscotchBuiltInVariables.contains(yoyo)) {
-                    appendLine("| `${yoyo}` | \uD83D\uDEAB |")
-                } else {
-                    appendLine("| `${yoyo}` | ✅ |")
-                    implemented++
-                }
-                total++
-            }
-        }
-
-        return buildString {
-            appendLine("**Progress:** $implemented/$total (${(implemented / total.toDouble()) * 100}%)")
-            appendLine()
-            appendLine("Tested against $gameMakerRunnerVersion")
-            appendLine()
-            appendLine(table)
-        }
-    }
-
-    // TODO: If we ever move this to a proper class, we can reference the files with ButterscotchWikiGenerator::class
-    // For old bytecode versions we pull it from a file, because YoYo doesn't offer downloads for them anymore (aside from bytecode version 16)
     val anon = object {}
-    File("Butterscotch.wiki/Implemented Functions.md").writeText(generateFunctionsTable("GameMaker $gameMakerRunnerVersion", registeredYoYoFunctions))
-    File("Butterscotch.wiki/Implemented Functions (WAD Version 8).md").writeText(generateFunctionsTable("GameMaker: Studio 1.0.198", anon::class.java.getResourceAsStream("/wad8_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Functions (WAD Version 10).md").writeText(generateFunctionsTable("GameMaker: Studio 1.1.690", anon::class.java.getResourceAsStream("/wad10_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Functions (WAD Version 11).md").writeText(generateFunctionsTable("GameMaker: Studio 1.1.827", anon::class.java.getResourceAsStream("/wad11_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Functions (WAD Version 12).md").writeText(generateFunctionsTable("GameMaker: Studio 1.1.867", anon::class.java.getResourceAsStream("/wad12_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Functions (WAD Version 13).md").writeText(generateFunctionsTable("WAD Version 13", anon::class.java.getResourceAsStream("/wad13_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Functions (WAD Version 14).md").writeText(generateFunctionsTable("WAD Version 14", anon::class.java.getResourceAsStream("/wad14_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Functions (WAD Version 15).md").writeText(generateFunctionsTable("WAD Version 15", anon::class.java.getResourceAsStream("/wad15_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Functions (WAD Version 16).md").writeText(generateFunctionsTable("WAD Version 16", anon::class.java.getResourceAsStream("/wad16_functions.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    fun loadResource(name: String): List<String> = anon::class.java.getResourceAsStream("/$name")!!.readAllBytes().toString(Charsets.UTF_8).lines().filter { it.isNotBlank() }
 
-    File("Butterscotch.wiki/Implemented Built-In Variables.md").writeText(generateBuiltInsTable("GameMaker $gameMakerRunnerVersion", registeredYoYoBuiltInVariables))
-    File("Butterscotch.wiki/Implemented Built-In Variables (WAD Version 8).md").writeText(generateBuiltInsTable("GameMaker: Studio 1.0.198", anon::class.java.getResourceAsStream("/wad8_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Built-In Variables (WAD Version 10).md").writeText(generateBuiltInsTable("GameMaker: Studio 1.1.690", anon::class.java.getResourceAsStream("/wad10_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Built-In Variables (WAD Version 11).md").writeText(generateBuiltInsTable("GameMaker: Studio 1.1.827", anon::class.java.getResourceAsStream("/wad11_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Built-In Variables (WAD Version 12).md").writeText(generateBuiltInsTable("GameMaker: Studio 1.1.867", anon::class.java.getResourceAsStream("/wad12_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Built-In Variables (WAD Version 13).md").writeText(generateBuiltInsTable("WAD Version 13", anon::class.java.getResourceAsStream("/wad13_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Built-In Variables (WAD Version 14).md").writeText(generateBuiltInsTable("WAD Version 14", anon::class.java.getResourceAsStream("/wad14_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Built-In Variables (WAD Version 15).md").writeText(generateBuiltInsTable("WAD Version 15", anon::class.java.getResourceAsStream("/wad15_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
-    File("Butterscotch.wiki/Implemented Built-In Variables (WAD Version 16).md").writeText(generateBuiltInsTable("WAD Version 16", anon::class.java.getResourceAsStream("/wad16_builtin_variables.txt").readAllBytes().toString(Charsets.UTF_8).lines()))
+    val versionTimeline: List<Pair<String, String?>> = listOf(
+        "GameMaker: Studio 1.0.198" to "gms_1_0_198",
+        "GameMaker: Studio 1.1.690" to "gms_1_1_690",
+        "GameMaker: Studio 1.1.827" to "gms_1_1_827",
+        "GameMaker: Studio 1.1.867" to "gms_1_1_867",
+        "WAD Version 13" to "wad13",
+        "WAD Version 14" to "wad14",
+        "WAD Version 15" to "wad15",
+        "WAD Version 16" to "wad16",
+        "GameMaker $gameMakerRunnerVersion" to null,
+    )
 
-    val wadVersions = listOf(8, 10, 11, 12, 13, 14, 15, 16)
-    val sidebar = buildString {
-        appendLine("- [Home](Home)")
-        appendLine("- **Implemented Functions**")
-        appendLine("  - [Latest](Implemented-Functions)")
-        for (v in wadVersions) {
-            appendLine("  - [WAD $v](Implemented-Functions-(WAD-Version-$v))")
+    fun firstSeen(suffix: String, liveList: List<String>): LinkedHashMap<String, String> {
+        val out = LinkedHashMap<String, String>()
+        for ((label, prefix) in versionTimeline) {
+            val list = if (prefix == null) liveList else loadResource("${prefix}_$suffix.txt")
+            for (name in list) if (name !in out) out[name] = label
         }
-        appendLine("- **Implemented Built-In Variables**")
-        appendLine("  - [Latest](Implemented-Built-In-Variables)")
-        for (v in wadVersions) {
-            appendLine("  - [WAD $v](Implemented-Built-In-Variables-(WAD-Version-$v))")
+        return out
+    }
+
+    fun generateMergedTable(header: String, firstSeenMap: Map<String, String>, implemented: List<String>): String {
+        val labelOrder = versionTimeline.map { it.first }
+        val sorted = firstSeenMap.entries.sortedWith(compareBy({ labelOrder.indexOf(it.value) }, { it.key }))
+        val total = sorted.size
+        val done = sorted.count { it.key in implemented }
+
+        val table = buildString {
+            appendLine("| $header | Implemented? | Added In |")
+            appendLine("| - | - | - |")
+            for ((name, version) in sorted) {
+                val mark = if (name in implemented) "✅" else "🚫"
+                appendLine("| `$name` | $mark | $version |")
+            }
+        }
+
+        return buildString {
+            appendLine("**Progress:** $done/$total (${(done / total.toDouble()) * 100}%)")
+            appendLine()
+            appendLine(table)
         }
     }
-    File("Butterscotch.wiki/_Sidebar.md").writeText(sidebar)
+
+    val firstSeenFunctions = firstSeen("functions", registeredYoYoFunctions)
+    val firstSeenBuiltIns = firstSeen("builtin_variables", registeredYoYoBuiltInVariables)
+
+    File("Butterscotch.wiki/Implemented Functions.md")
+        .writeText(generateMergedTable("GML Function", firstSeenFunctions, registeredButterscotchFunctions))
+    File("Butterscotch.wiki/Implemented Built-In Variables.md")
+        .writeText(generateMergedTable("GML Built-In Variable", firstSeenBuiltIns, registeredButterscotchBuiltInVariables))
 }
 
 fun decompileWithGhidra(soFile: File, outC: File) {
